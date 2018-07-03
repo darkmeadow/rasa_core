@@ -99,6 +99,14 @@ you need to supply a ``slack_credentials.yml`` with the following content:
 .. literalinclude:: ../examples/moodbot/slack_credentials.yml
 
 
+.. note::
+  
+  **slack event subscritption :** in Slack You need to add /webhook at the end
+  of your Request URL for it to able to connect to your server
+    * example http://your.dns:5002/webhook
+
+   
+
 Directly using python
 ^^^^^^^^^^^^^^^^^^^^^
 
