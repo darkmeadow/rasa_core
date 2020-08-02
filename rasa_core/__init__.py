@@ -1,12 +1,10 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+import rasa.core
+import sys
+import warnings
 
-import logging
+# this makes sure old code can still import from `rasa_core`
+# although the package has been moved to `rasa.core`
+sys.modules['rasa_core'] = rasa.core
 
-import rasa_core.version
-
-logging.getLogger(__name__).addHandler(logging.NullHandler())
-
-__version__ = rasa_core.version.__version__
+warnings.warn("The 'rasa_core' package hase been renamed. You should change "
+              "your imports to use 'rasa.core' instead.", UserWarning)

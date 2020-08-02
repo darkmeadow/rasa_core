@@ -1,31 +1,30 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+import asyncio
 
-from rasa_core import utils
-from rasa_core.agent import Agent
-from rasa_core.policies.keras_policy import KerasPolicy
-from rasa_core.policies.memoization import MemoizationPolicy
+import rasa.utils
+from rasa.core import train, utils
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+async def train_dialogue(domain_file='domain.yml',
+                         stories_file='data/stories.md',
+                         model_path='models/dialogue',
+                         policy_config='config.yml'):
+    return await train(domain_file=domain_file,
+                       stories_file=stories_file,
+                       output_path=model_path,
+                       policy_config=policy_config,
+                       kwargs={'augmentation_factor': 50,
+                               'validation_split': 0.2})
+
 
 if __name__ == '__main__':
-    utils.configure_colored_logging(loglevel="INFO")
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(train_dialogue())
 
-    training_data_file = 'data/stories.md'
-    model_path = 'models/dialogue'
-
-    agent = Agent("concert_domain.yml",
-                  policies=[MemoizationPolicy(), KerasPolicy()])
-
-    training_data = agent.load_data(training_data_file)
-
-    agent.train(
-            training_data,
-            augmentation_factor=50,
-            max_history=2,
-            epochs=500,
-            batch_size=10,
-            validation_split=0.2
-    )
-
-    agent.persist(model_path)
+    rasa.utils.configure_colored_logging(loglevel="INFO")
+    logger.info("This example does not include NLU data."
+                "Please specify the desired intent with a preceding '/', e.g."
+                "'/greet' .")

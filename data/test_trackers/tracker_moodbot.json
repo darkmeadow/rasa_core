@@ -22,14 +22,20 @@
     ]
   },
   "sender_id": "mysender",
+  "latest_action_name": "action_listen",
+  "active_form": {},
   "paused": false,
   "latest_event_time": 1517821726.211042,
+  "followup_action": null,
   "slots": {"name": null},
+  "latest_input_channel": null,
   "events": [
     {
       "timestamp": 1517821726.211031,
       "event": "action",
-      "name": "action_listen"
+      "name": "action_listen",
+      "policy": null,
+      "confidence": null
     },
     {
       "timestamp": 1517821726.200036,
@@ -56,17 +62,22 @@
         ]
       },
       "event": "user",
-      "text": "/greet"
+      "text": "/greet",
+      "input_channel": null
     },
     {
       "timestamp": 1517821726.200373,
       "event": "action",
-      "name": "utter_greet"
+      "name": "utter_greet",
+      "policy": null,
+      "confidence": null
     },
     {
       "timestamp": 1517821726.211038,
       "event": "action",
-      "name": "action_listen"
+      "name": "action_listen",
+      "policy": null,
+      "confidence": null
     },
     {
       "timestamp": 1517821726.209836,
@@ -93,17 +104,22 @@
         ]
       },
       "event": "user",
-      "text": "/mood_great"
+      "text": "/mood_great",
+      "input_channel": null
     },
     {
       "timestamp": 1517821726.209908,
       "event": "action",
-      "name": "utter_happy"
+      "name": "utter_happy",
+      "policy": "policy_1_KerasPolicy",
+      "confidence": 0.8
     },
     {
       "timestamp": 1517821726.211042,
       "event": "action",
-      "name": "action_listen"
+      "name": "action_listen",
+      "policy": "policy_2_MemoizationPolicy",
+      "confidence": 1.0
     }
   ]
 }

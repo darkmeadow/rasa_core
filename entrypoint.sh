@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -Eeuo pipefail
 
 function print_help {
     echo "Available options:"
@@ -13,13 +13,13 @@ function print_help {
 
 case ${1} in
     start)
-        exec python -m rasa_core.server "${@:2}"
+        exec python3 -m rasa.core.run --enable_api "${@:2}"
         ;;
     run)
         exec "${@:2}"
         ;;
     train)
-        exec python -m rasa_core.train -s ./stories.md -d ./domain.yml -o ./out "${@:2}"
+        exec python3 -m rasa.core.train -s project/stories.md -d project/domain.yml -o ./model "${@:2}"
         ;;
     *)
         print_help

@@ -1,15 +1,14 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
+import asyncio
 
-from rasa_core.agent import Agent
-from rasa_core.policies.keras_policy import KerasPolicy
-from rasa_core.policies.memoization import MemoizationPolicy
+from rasa.core.agent import Agent
+from rasa.core.policies.keras_policy import KerasPolicy
+from rasa.core.policies.memoization import MemoizationPolicy
 
 if __name__ == '__main__':
-    agent = Agent("concert_domain.yml",
+    agent = Agent("domain.yml",
                   policies=[MemoizationPolicy(), KerasPolicy()])
 
-    agent.visualize("data/stories.md",
-                    output_file="graph.png", max_history=2)
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(
+        agent.visualize("data/stories.md",
+                        output_file="graph.html", max_history=2))

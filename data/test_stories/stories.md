@@ -1,5 +1,5 @@
 ## simple_story_without_checkpoint
-* simple                       <!-- user utterance in _intent[entities] format -->
+* simple
     - utter_default
     - utter_greet
 
@@ -19,7 +19,7 @@
     - utter_default
 * goodbye
     - utter_goodbye
-> check_goodbye        
+> check_goodbye
 
 ## why does the user want to leave?
 > check_goodbye
